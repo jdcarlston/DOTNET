@@ -58,19 +58,8 @@ namespace DOTNET.Data
             switch (type.Name)
             {
                 //Need one case block per domain object
-                case "Applicant": m = new MApplicant(); break;
-                case "Bank": m = new MBank(); break;
-                case "ApplicantRequest": m = new MApplicantRequest(); break;
-                case "Brand": m = new MBrand(); break;
-                case "Campaign": m = new MCampaign(); break;
-                case "CardDesign": m = new MCardDesign(); break;
-                case "Certificate": m = new MCertificate(); break;
-                case "MarketingCode": m = new MMarketingCode(); break;
-                case "MLP": m = new MMLP(); break;
-                case "PreScreen": m = new MPreScreen(); break;
-                case "Pricing": m = new MPricing(); break;
-                case "Recipient": m = new MRecipient(); break;
-                case "Term": m = new MTerm(); break;
+                case "Test": m = new MTest(); break;
+                case "UserEvent": m = new MUserEvent(); break;
             }
 
             return m;
