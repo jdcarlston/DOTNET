@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF72FA79-751F-42A0-B10F-4342542FBB5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LIB</RootNamespace>
+    <AssemblyName>LIB</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomXmlSerializer.cs" />
+    <Compile Include="DataSource.cs" />
+    <Compile Include="Data\AppCache.cs" />
+    <Compile Include="Data\MException.cs" />
+    <Compile Include="Data\Model.cs" />
+    <Compile Include="Data\ModelListLoader.cs" />
+    <Compile Include="Data\ModelObjectCache.cs" />
+    <Compile Include="Data\ModelRegistry.cs" />
+    <Compile Include="Data\ModelT.cs" />
+    <Compile Include="Data\MTest.cs" />
+    <Compile Include="Data\MUserEvent.cs" />
+    <Compile Include="EncodedStringWriter.cs" />
+    <Compile Include="Extensions\EDataRow.cs" />
+    <Compile Include="Extensions\EDataSet.cs" />
+    <Compile Include="Extensions\EDateTime.cs" />
+    <Compile Include="Extensions\EDecimalFormatting.cs" />
+    <Compile Include="Extensions\EHttpRequest.cs" />
+    <Compile Include="Extensions\EListInt.cs" />
+    <Compile Include="Extensions\EListString.cs" />
+    <Compile Include="Extensions\EObjectSerialize.cs" />
+    <Compile Include="Extensions\EStringDeserialize.cs" />
+    <Compile Include="Extensions\EStringTransform.cs" />
+    <Compile Include="Extensions\EXmlDocumentDeserialize.cs" />
+    <Compile Include="Extensions\EXmlReaderDeserialize.cs" />
+    <Compile Include="Ghostable.cs" />
+    <Compile Include="IGhostable.cs" />
+    <Compile Include="IModelList.cs" />
+    <Compile Include="IModelObject.cs" />
+    <Compile Include="ModelList.cs" />
+    <Compile Include="ModelObject.cs" />
+    <Compile Include="Models\Test.cs" />
+    <Compile Include="MSMQ\IO.cs" />
+    <Compile Include="MSMQ\QueueHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueConnection.cs" />
+    <Compile Include="SerializableDictionary.cs" />
+    <Compile Include="Sessions\EUserEvent.cs" />
+    <Compile Include="Sessions\EUserSession.cs" />
+    <Compile Include="Sessions\IUserSession.cs" />
+    <Compile Include="Models\UserEvents.cs" />
+    <Compile Include="Sessions\UserSession.cs" />
+    <Compile Include="StringCheck.cs" />
+    <Compile Include="AgeCheck.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MSMQ\Monitor\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

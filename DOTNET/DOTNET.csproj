@@ -10,9 +10,4 @@
     <None Remove="NewFolder\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="System.Net.Http" Version="4.3.3" />
-  </ItemGroup>
-
 </Project>
