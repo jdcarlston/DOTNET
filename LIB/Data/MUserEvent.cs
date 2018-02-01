@@ -15,6 +15,7 @@ namespace LIB.Data
         internal override void LoadLine(DataRow row, UserEvent obj)
         {
             obj.Id = row.FieldValue("Id", obj.Id);
+            obj.TS = row.FieldValue<DateTime>("TS", DateTime.MinValue);
             obj.Timestamp = row.FieldValue<DateTime>("Timestamp", DateTime.MinValue);
             obj.Description = row.FieldValue<string>("Description", obj.Description);
 
