@@ -13,14 +13,14 @@ namespace DOTNET.Data
     /// <summary>
     /// Singleton for storing references to specific object mapper objects.
     /// </summary>
-    public class ModelRegistry : LIB.DataSource.IDataSource
+    public class ModelRegistry : DOTNET.DataSource.IDataSource
     {
         private static ModelRegistry _instance = new ModelRegistry();
         private IDictionary _models = new Hashtable();
 
         public ModelRegistry()
         {
-            LIB.DataSource.Init(this);
+            DOTNET.DataSource.Init(this);
         }
 
         public void Load(IModelObject obj)
