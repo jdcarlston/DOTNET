@@ -21,7 +21,7 @@ namespace LIB.Data
         private string _smtp = string.Empty;
         private int _counter = 0;
         private List<KeyValuePair<string, string>> _paths = new List<KeyValuePair<string, string>>();
-        private QueueConnections _qconns = new QueueConnections();
+        private QueuePaths _qpaths = new QueuePaths();
 
         public AppCache()
         { }
@@ -55,27 +55,27 @@ namespace LIB.Data
             set { _instance._area = value; }
         }
 
-        public static QueueConnections QConns
+        public static QueuePaths QPaths
         {
             get
             {
-                if (_instance._qconns.Count.Equals(0))
+                if (_instance._qpaths.Count.Equals(0))
                 {
                     switch (Area)
                     {
                         case Areas.DMZ:
-                            _instance._qconns.Add(new QueueConnection("dmz_qin1", "dmz_qout1", "dmz_qack1"));
-                            _instance._qconns.Add(new QueueConnection("dmz_qin2", "dmz_qout2", "dmz_qack2"));
+                            _instance._qpaths.Add(new QueuePath("dmz_qin1", "dmz_qout1", "dmz_qack1"));
+                            _instance._qpaths.Add(new QueuePath("dmz_qin2", "dmz_qout2", "dmz_qack2"));
                             break;
                         default:
-                            _instance._qconns.Add(new QueueConnection("uat_qin1", "uat_qout1", "uat_qack1"));
-                            _instance._qconns.Add(new QueueConnection("uat_qin2", "uat_qout2", "uat_qack2"));
+                            _instance._qpaths.Add(new QueuePath("uat_qin1", "uat_qout1", "uat_qack1"));
+                            _instance._qpaths.Add(new QueuePath("uat_qin2", "uat_qout2", "uat_qack2"));
                             break;
                     }
                 }
-                return _instance._qconns;
+                return _instance._qpaths;
             }
-            set { _instance._qconns = value; }
+            set { _instance._qpaths = value; }
         }
 
         public static string DbConnStr

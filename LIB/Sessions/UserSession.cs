@@ -7,18 +7,15 @@ namespace LIB.Data
 {
     [Serializable]
     [XmlType(TypeName = "UserSession")]
-    public class UserSession : IUserSession
+    public class UserSession : ModelObject, IUserSession
     {
         private string _sessionid = String.Empty;
         private List<string> _ipaddresses = new List<string>();
         private string _agent = String.Empty;
         private string _browser = String.Empty;
-        private string _partnerurlid = string.Empty;
 
-        private QueueConnection _queueconnection = new QueueConnection();
+        private QueuePath _queueconnection = new QueuePath();
         private UserEvents _userevents = new UserEvents();
-
-        private int _certificateid = 0;
 
         public UserSession() { }
         public UserSession(UserSession obj) 
@@ -28,7 +25,6 @@ namespace LIB.Data
             Agent = obj.Agent;
             Browser = obj.Browser;
             UserEvents = obj.UserEvents;
-            CertificateId = obj.CertificateId;
         }
 
         [XmlAttribute]
@@ -56,13 +52,9 @@ namespace LIB.Data
             set { _browser = value; }
         }
 
-        public string PartnerUrlId { get { return _partnerurlid == null ? String.Empty : _partnerurlid.Trim().Clean(); } set { _partnerurlid = value.Clean(); } }
-
-        public QueueConnection QueueConnection { get { return _queueconnection; } set { _queueconnection = value; } }
+        public QueuePath QueuePath { get { return _queueconnection; } set { _queueconnection = value; } }
 
         [XmlIgnore]
         public UserEvents UserEvents { get { return _userevents; } set { _userevents = value; } }
-
-        public int CertificateId { get { return _certificateid; } set { _certificateid = value; } }
     }
 }

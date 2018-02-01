@@ -7,20 +7,29 @@ namespace LIB
     [Serializable]
     public class UserEvent : ModelObject
     {
+        private string _sessionid = String.Empty;
         private DateTime _timestamp = DateTime.Now;
         private string _description = String.Empty;
 
         public UserEvent() { }
-        public UserEvent(string description)
+
+        public UserEvent(string sessionid, string description)
         {
+            _sessionid = sessionid;
             _description = description;
         }
-        public UserEvent(string description, DateTime timestamp)
+        public UserEvent(int id, string sessionid, string description, DateTime timestamp)
         {
-            _timestamp = timestamp;
+            _sessionid = sessionid;
             _description = description;
+            _timestamp = timestamp;
         }
 
+        public string SessionId
+        {
+            get { return _sessionid; }
+            set { _sessionid = value; }
+        }
         [XmlAttribute]
         public DateTime Timestamp
         {
@@ -44,18 +53,6 @@ namespace LIB
         public UserEvents(UserEvents col)
         {
             this.AddRange(col);
-        }
-
-        public void Add(string e)
-        {
-            this.Add(new UserEvent(e));
-        }
-
-        public void Add(string e, int id, string sessionid)
-        {
-            UserEvent ue = new UserEvent(e);
-            this.Add(ue);
-            //ue.Log(id, sessionid);
         }
     }
 }

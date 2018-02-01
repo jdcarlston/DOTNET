@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Messaging;
 
-namespace LIB.MSMQ
+namespace LIB.Q
 {
     public static class MessageQueueHandler
     {

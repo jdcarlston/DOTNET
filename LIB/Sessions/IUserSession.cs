@@ -19,10 +19,6 @@ namespace LIB.Data
         string Agent { get; set; }
         string Browser { get; set; }
 
-        string PartnerUrlId { get; set; }
-
         UserEvents UserEvents { get; set; }
-
-        int CertificateId { get; set; }
     }
 }

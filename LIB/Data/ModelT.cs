@@ -10,28 +10,28 @@ namespace LIB.Data
         internal abstract void LoadLine(DataRow row, T obj);
 
         public Model() : base() { }
-        //public Mapper(string cs) : base(cs) { }
-        //public Mapper(string cs, string schema) : base(cs, schema) { }
-        //public Mapper(string schema) : base(schema) { }
+        //public Model(string cs) : base(cs) { }
+        //public Model(string cs, string schema) : base(cs, schema) { }
+        //public Model(string schema) : base(schema) { }
 
         public T CreateGhost(int id)
         {
             T obj = new T();
             obj.Id = id;
-            
-            //See if the object is cached, if so return it.
-            //if (ModelObjectCache.IsObjectCached<T>(id))
-            //{
-            //    obj.MarkLoading();
-            //    ModelObjectCache.GetCachedObject<T>(obj);
-            //    obj.MarkLoaded();
-            //}
-            //else
-            //{
-            //    obj.MarkGhost();
-            //}
 
-            obj.MarkGhost();
+            //See if the object is cached, if so return it.
+            if (ModelObjectCache.IsObjectCached<T>(id))
+            {
+                obj.MarkLoading();
+                ModelObjectCache.GetCachedObject<T>(obj);
+                obj.MarkLoaded();
+            }
+            else
+            {
+                obj.MarkGhost();
+            }
+
+            //obj.MarkGhost();
 
             return obj;
         }

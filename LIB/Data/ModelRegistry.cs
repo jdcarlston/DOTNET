@@ -60,6 +60,7 @@ namespace LIB.Data
                 //Need one case block per domain object
                 case "Test": m = new MTest(); break;
                 case "UserEvent": m = new MUserEvent(); break;
+                case "UserSession": m = new MUserSession(); break;
             }
 
             return m;

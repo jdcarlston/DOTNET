@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 namespace LIB
 {
     [Serializable]
-    public class QueueConnection
+    public class QueuePath
     {
         private string _inbound = String.Empty;
         private string _outbound = String.Empty;
         private string _ack = String.Empty;
 
-        public QueueConnection() { }
-        public QueueConnection(string inbound, string outbound)
+        public QueuePath() { }
+        public QueuePath(string inbound, string outbound)
         {
             Inbound = inbound;
             Outbound = outbound;
         }
-        public QueueConnection(string inbound, string outbound, string ack)
+        public QueuePath(string inbound, string outbound, string ack)
         {
             Inbound = inbound;
             Outbound = outbound;
@@ -44,10 +44,10 @@ namespace LIB
     }
 
     [Serializable]
-    public class QueueConnections : List<QueueConnection>
+    public class QueuePaths : List<QueuePath>
     {
-        public QueueConnections() { }
-        public QueueConnections(QueueConnections col)
+        public QueuePaths() { }
+        public QueuePaths(QueuePaths col)
         {
             this.AddRange(col);
         }

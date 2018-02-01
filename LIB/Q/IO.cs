@@ -6,7 +6,7 @@ using System.Data.SqlTypes;
 using System.Messaging;
 using System.Text;
 
-namespace LIB.MSMQ
+namespace LIB.Q
 {
     public class IO
     {

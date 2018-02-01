@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LIB
 {
-    public static class AgeCheck
+    public static class Age
     {
         public static int AgeYears(DateTime date)
         {
