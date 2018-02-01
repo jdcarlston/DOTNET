@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LIB
+namespace DOTNET
 {
     /// <summary>
     /// Base class for all id based domain objects.

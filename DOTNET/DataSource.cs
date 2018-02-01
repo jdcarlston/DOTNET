@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LIB
+namespace DOTNET
 {
     /// <summary>
     /// Singleton that holds a reference to a Data.MapperRegistry object.

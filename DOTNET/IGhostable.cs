@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LIB
+namespace DOTNET
 {
     public enum LoadStatus { GHOST, LOADING, LOADED };
 

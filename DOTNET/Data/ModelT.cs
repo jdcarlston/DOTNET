@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using LIB;
+using DOTNET;
 
-namespace LIB.Data
+namespace DOTNET.Data
 {
     public abstract class Model<T> : Model where T : IModelObject, new()
     {

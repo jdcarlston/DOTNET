@@ -1,4 +1,4 @@
-﻿using LIB;
+﻿using DOTNET;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LIB.Data
+namespace DOTNET.Data
 {
     /// <summary>
     /// Lazy load mapper stub for a lists

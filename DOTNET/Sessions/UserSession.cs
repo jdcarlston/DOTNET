@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.SessionState;
 using System.Xml.Serialization;
 using DOTNET;
 
@@ -20,7 +16,6 @@ namespace DOTNET.Data
         private string _partnerurlid = string.Empty;
 
         private UserEvents _userevents = new UserEvents();
-        private MsmqConnection _msmqconnection = new MsmqConnection();
 
         private int _certificateid = 0;
 
@@ -32,7 +27,6 @@ namespace DOTNET.Data
             Agent = obj.Agent;
             Browser = obj.Browser;
             UserEvents = obj.UserEvents;
-            MsmqConnection = obj.MsmqConnection;
             CertificateId = obj.CertificateId;
         }
 
@@ -65,8 +59,6 @@ namespace DOTNET.Data
 
         [XmlIgnore]
         public UserEvents UserEvents { get { return _userevents; } set { _userevents = value; } }
-
-        public MsmqConnection MsmqConnection { get { return _msmqconnection; } set { _msmqconnection = value; } }
 
         public int CertificateId { get { return _certificateid; } set { _certificateid = value; } }
     }

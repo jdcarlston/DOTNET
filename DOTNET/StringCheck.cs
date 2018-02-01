@@ -6,18 +6,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace LIB
+namespace DOTNET
 {
     public static class StringCheck
     {
-        public static bool IsValidSolicitation(string value)
-        {
-            return Regex.IsMatch(value, @"[0-9]{4}[0-9A-Z]{8}");
-        }
-        //public static bool IsValidEmail(string value)
-        //{
-        //    return Regex.IsMatch(value, @"");
-        //}
         public static bool IsValidFirstName(string value)
         {
             return Regex.IsMatch(value, @"^[a-zA-Z][a-zA-Z\s-\']{0,13}[a-zA-Z]{0,1}$");
@@ -85,6 +77,10 @@ namespace LIB
         {
             bool test = Regex.IsMatch(value, @"^[0-9]{1,17}$");
             return test;
+        }
+        public static bool IsValidEmailAddress(string value)
+        {
+            return Regex.IsMatch(value, @"^[a-zA-Z0-9\.\!#\$\%\&\*\+\/\=\?\^\_\`\{\|\}\~\-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
         }
     }
 }

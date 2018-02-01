@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LIB
+namespace DOTNET
 {
     /// <summary>
     /// Defines how to serialize class members (fields and properties)

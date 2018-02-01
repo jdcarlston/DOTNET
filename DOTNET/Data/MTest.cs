@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LIB.Data
+namespace DOTNET.Data
 {
     public class MTest : Model<Test>
     {

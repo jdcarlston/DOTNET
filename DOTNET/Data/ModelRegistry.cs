@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using LIB;
+using DOTNET;
 
-namespace LIB.Data
+namespace DOTNET.Data
 {
     /// <summary>
     /// Singleton for storing references to specific object mapper objects.

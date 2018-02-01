@@ -23,8 +23,6 @@ namespace DOTNET.Data
 
         UserEvents UserEvents { get; set; }
 
-        MsmqConnection MsmqConnection { get; set; }
-
         int CertificateId { get; set; }
     }
 }

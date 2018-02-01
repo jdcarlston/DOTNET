@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace DOTNET.Data
+namespace DOTNET
 {
     [Serializable]
     public class UserEvent

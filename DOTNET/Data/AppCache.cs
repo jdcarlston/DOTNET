@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web.Configuration;
-using LIB;
-using System.Data;
-using System.Xml;
-using System.Web;
+using DOTNET;
 
-namespace LIB.Data
+namespace DOTNET.Data
 {
-    public enum Areas { LIVE, UAT, DEV }
+    public enum Areas { DMZ, UAT, DEV }
 
     public class AppCache
     {
@@ -24,7 +16,7 @@ namespace LIB.Data
         private Areas _area;
         private string _accessrole = string.Empty;
         private string _dbconnstr = string.Empty;
-        private string _database = string.Empty;
+        private string _defaultdatabase = string.Empty;
         private string _smtp = string.Empty;
         private int _counter = 0;
         private List<KeyValuePair<string, string>> _paths = new List<KeyValuePair<string, string>>();
@@ -50,7 +42,7 @@ namespace LIB.Data
             get
             {
                 if (Regex.IsMatch(Environment.MachineName.ToUpper(), @""))
-                    _instance._area = Areas.LIVE;
+                    _instance._area = Areas.DMZ;
                 else if (Regex.IsMatch(Environment.MachineName.ToUpper(), @""))
                     _instance._area = Areas.UAT;
                 else
@@ -67,31 +59,51 @@ namespace LIB.Data
             {
                 if (_instance._dbconnstr.IsNullOrEmpty())
                 {
+                    string dmz = "dmz_db";
+                    string uat = "uat_db";
+                    string qa = "qa_db";
+
                     switch (Area)
                     {
-                        case Areas.LIVE: _instance._dbconnstr = WebConfigurationManager.ConnectionStrings["LIVE_DB"].ConnectionString.Decrypt(); break;
-                        default: _instance._dbconnstr = WebConfigurationManager.ConnectionStrings["UAT_DB"].ConnectionString; break;
+                        case Areas.DMZ: _instance._dbconnstr = dmz; break;
+                        case Areas.UAT: _instance._dbconnstr = uat; break;
+                        case Areas.QA: _instance._dbconnstr = qa; break;
                     }
+
+                    if (_instance._dbconnstr.IsNullOrEmpty())
+                        _instance._dbconnstr = uat;
                 }
+
+                if (_instance._dbconnstr.IsNullOrEmpty())
+                    throw new Exception("No Default Database Connection set");
 
                 return _instance._dbconnstr;
             }
             set { _instance._dbconnstr = value; }
         }
 
-        public static string Database
+        public static string DefaultDatabase
         {
             get
             {
-                if (_instance._database.IsNullOrEmpty())
+                if (_instance._defaultdatabase.IsNullOrEmpty())
                 {
-                    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(DbConnStr);
-                    _instance._database = !builder.InitialCatalog.IsNullOrEmpty() ? builder.InitialCatalog : "";
+                    //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(DbConnStrCardApps);
+                    //_instance._defaultdatabase = !builder.InitialCatalog.IsNullOrEmpty() ? builder.InitialCatalog : "[Default]";
+                    _instance._defaultdatabase = "[Default]";
                 }
 
-                return _instance._database;
+                return _instance._defaultdatabase;
             }
-            set { _instance._database = value; }
+            set { _instance._defaultdatabase = value; }
+        }
+
+        public static SmtpClient SmtpClient()
+        {
+            if (SMTP == null)
+                return new SmtpClient(AppCache.SMTP);
+
+            return new SmtpClient();
         }
 
         public static string SMTP
@@ -102,8 +114,8 @@ namespace LIB.Data
                 {
                     switch (Area)
                     {
-                        case Areas.LIVE: _instance._smtp = WebConfigurationManager.AppSettings["LIVE_SMTP"].ToString(); break;
-                        default: _instance._smtp = WebConfigurationManager.AppSettings["DEV_SMTP"].ToString(); break;
+                        case Areas.DMZ: _instance._smtp = "dmzmail"; break;
+                        default: _instance._smtp = "uatmail"; break;
                     }
                 }
 
@@ -111,14 +123,5 @@ namespace LIB.Data
             }
             set { _instance._smtp = value; }
         }
-
-        public static SmtpClient SmtpClient()
-        {
-            if (SMTP == null)
-                return new SmtpClient(AppCache.SMTP);
-
-            return new SmtpClient();
-        }
-        
     }
 }
