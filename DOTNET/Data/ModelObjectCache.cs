@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DOTNET;
+using LIB;
 
-namespace DOTNET.Data
+namespace LIB.Data
 {
     /// <summary>
     /// Singleton class to support caching of DomainObjects based on their id value.

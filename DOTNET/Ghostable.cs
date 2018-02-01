@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DOTNET
+namespace LIB
 {
     /// <summary>
     /// Base class for all "ghostable objects". Provides state management for lazy loading.

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DOTNET;
+using LIB;
 
-namespace DOTNET.Data
+namespace LIB.Data
 {
     /// <summary>
     /// Singleton for storing references to specific object mapper objects.
@@ -13,14 +13,14 @@ namespace DOTNET.Data
     /// <summary>
     /// Singleton for storing references to specific object mapper objects.
     /// </summary>
-    public class ModelRegistry : DOTNET.DataSource.IDataSource
+    public class ModelRegistry : LIB.DataSource.IDataSource
     {
         private static ModelRegistry _instance = new ModelRegistry();
         private IDictionary _models = new Hashtable();
 
         public ModelRegistry()
         {
-            DOTNET.DataSource.Init(this);
+            LIB.DataSource.Init(this);
         }
 
         public void Load(IModelObject obj)

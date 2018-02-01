@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DOTNET
+namespace LIB
 {
     /// <summary>
     /// ModelList is a ghostable list of domain objects

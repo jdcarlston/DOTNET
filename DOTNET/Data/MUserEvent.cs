@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DOTNET.Data
+namespace LIB.Data
 {
     public class MUserEvent : Model<UserEvent>
     {

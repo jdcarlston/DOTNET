@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace DOTNET
+namespace LIB
 {
     public class EncodedStringWriter : System.IO.StringWriter
     {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace DOTNET
+namespace LIB
 {
     [XmlRoot("dictionary")]
     public class SerializableDictionary<TKey, TValue>

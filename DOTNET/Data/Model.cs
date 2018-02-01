@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using DOTNET;
+using LIB;
 
-namespace DOTNET.Data
+namespace LIB.Data
 {
     /// <summary>
     /// Base class for all domain object model mappers.

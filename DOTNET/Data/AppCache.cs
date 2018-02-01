@@ -7,12 +7,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Configuration;
-using DOTNET;
+using LIB;
 using System.Data;
 using System.Xml;
 using System.Web;
 
-namespace DOTNET.Data
+namespace LIB.Data
 {
     public enum Areas { LIVE, UAT, DEV }
 
