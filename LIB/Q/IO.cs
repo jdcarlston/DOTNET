@@ -123,7 +123,7 @@ namespace LIB.Q
                 return label;
 
             //Creates the byte array of the message to format the string properly
-            byte[] byteMsg = SetMacEncoding(requestqueue, xmlmsg);
+            byte[] byteMsg = SetEncoding(requestqueue, xmlmsg);
 
             //Sets the correlation and label of the queue message
             Guid guid = Guid.NewGuid();
@@ -169,7 +169,7 @@ namespace LIB.Q
                 return label;
 
             //Creates the byte array of the message to format the string properly
-            byte[] byteMsg = SetMacEncoding(requestqueue, xmlmsg);
+            byte[] byteMsg = SetEncoding(requestqueue, xmlmsg);
 
             //Sets the correlation and label of the queue message
             Guid guid = Guid.NewGuid();
@@ -505,11 +505,10 @@ namespace LIB.Q
             return msgs.ToArray();
         }
 
-        private static byte[] SetMacEncoding(string requestqueue, SqlXml xmlmsg)
+        private static byte[] SetEncoding(string requestqueue, SqlXml xmlmsg)
         {
             byte[] byteMsg;
 
-            //Adds the string to define the XML ***must have an ending carriage return to be read by MAC***
             string XmlString = string.Empty;
 
             XmlString = "<?xml version=\"1.0\" encoding=\"UTF-16\"?>\n";
