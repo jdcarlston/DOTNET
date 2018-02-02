@@ -23,22 +23,22 @@ namespace LIB.Data
             ModelObjectCache.CacheObject(obj);
         }
 
-        public UserEvents FindBySessionId(UserSession session)
-        {
-            UserEvents list = new UserEvents();
+        //public UserEvents FindBySession(UserSession session)
+        //{
+        //    UserEvents list = new UserEvents();
 
-            if (session.SessionId.Length.Equals(0))
-            {
-                throw new HttpException("sessionid.Length.Equals(0) on FindBySessionId");
-            }
+        //    if (session.SessionId.Length.Equals(0))
+        //    {
+        //        throw new HttpException("sessionid.Length.Equals(0) on FindBySessionId");
+        //    }
 
-            ModelListLoader<UserEvent> loader = new ModelListLoader<UserEvent>();
-            loader.Sql = MUserEvent.FIND_USEREVENTS_BY_SESSIONID;
-            loader.AddLookupParameter("sessionid", SqlDbType.VarChar, 50, session.SessionId);
-            loader.Model = ModelRegistry.Model<UserEvent>();
-            loader.Attach(session.UserEvents);
+        //    ModelListLoader<UserEvent> loader = new ModelListLoader<UserEvent>();
+        //    loader.Sql = MUserEvent.FIND_USEREVENTS_BY_SESSIONID;
+        //    loader.AddLookupParameter("sessionid", SqlDbType.VarChar, 50, session.SessionId);
+        //    loader.Model = ModelRegistry.Model<UserEvent>();
+        //    loader.Attach(session.UserEvents);
 
-            return list;
-        }
+        //    return list;
+        //}
     }
 }
