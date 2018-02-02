@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\MasterPageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="CustomXmlSerializer.cs" />
     <Compile Include="DataSource.cs" />
     <Compile Include="Data\AppCache.cs" />
@@ -70,10 +77,15 @@
     <Compile Include="IGhostable.cs" />
     <Compile Include="IModelList.cs" />
     <Compile Include="IModelObject.cs" />
+    <Compile Include="InputList.cs" />
     <Compile Include="ModelList.cs" />
     <Compile Include="ModelObject.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Q\IO.cs" />
+    <Compile Include="Q\Monitor\MonitoredQueues.cs" />
+    <Compile Include="Q\Monitor\QMonitorService.cs" />
+    <Compile Include="Q\Monitor\QMonitorServiceBase.cs" />
+    <Compile Include="Q\Monitor\QRequestCall.cs" />
     <Compile Include="Q\QueueHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueuePath.cs" />
@@ -86,8 +98,6 @@
     <Compile Include="StringCheck.cs" />
     <Compile Include="Age.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Q\Monitor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

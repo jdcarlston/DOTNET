@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using LIB.Extensions;
+using System.Data;
+using System.Xml;
 
 namespace LIB.Data
 {
@@ -11,6 +13,10 @@ namespace LIB.Data
 
     public class AppCache
     {
+        private const string GET_INPUTLISTS = "[dbo].[GetInputListsAsXml]";
+        private const string GET_SITEPATHS = "[dbo].[GetSitePathsAsXml]";
+        private const string GET_QPATHS = "[dbo].[GetQPathsAsXml]";
+
         private static AppCache _instance = new AppCache();
 
         private DateTime _ts = DateTime.Now;
@@ -20,8 +26,10 @@ namespace LIB.Data
         private string _defaultdatabase = string.Empty;
         private string _smtp = string.Empty;
         private int _counter = 0;
-        private List<KeyValuePair<string, string>> _paths = new List<KeyValuePair<string, string>>();
+
+        private List<KeyValuePair<string, string>> _sitepaths = new List<KeyValuePair<string, string>>();
         private QueuePaths _qpaths = new QueuePaths();
+        private InputLists _inputlists = null;
 
         public AppCache()
         { }
@@ -55,27 +63,115 @@ namespace LIB.Data
             set { _instance._area = value; }
         }
 
+        public static List<KeyValuePair<string, string>> SitePaths
+        {
+            get
+            {
+                if (null == _instance._inputlists)
+                {
+                    using (SqlConnection cn = new SqlConnection(DbConnStr))
+                    {
+                        using (SqlCommand cmd = new SqlCommand(GET_SITEPATHS, cn))
+                        {
+                            cn.Open();
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            try
+                            {
+                                using (XmlReader dr = cmd.ExecuteXmlReader())
+                                {
+                                    _instance._sitepaths = dr.Deserialize<List<KeyValuePair<string, string>>>();
+                                }
+                            }
+                            catch
+                            {
+                                throw;
+                            }
+                        }
+                    }
+                }
+                return _instance._sitepaths;
+            }
+            set { _instance._sitepaths = value; }
+        }
+
         public static QueuePaths QPaths
         {
             get
             {
                 if (_instance._qpaths.Count.Equals(0))
                 {
-                    switch (Area)
+                    if (null == _instance._qpaths)
                     {
-                        case Areas.DMZ:
-                            _instance._qpaths.Add(new QueuePath("dmz_qin1", "dmz_qout1", "dmz_qack1"));
-                            _instance._qpaths.Add(new QueuePath("dmz_qin2", "dmz_qout2", "dmz_qack2"));
-                            break;
-                        default:
-                            _instance._qpaths.Add(new QueuePath("uat_qin1", "uat_qout1", "uat_qack1"));
-                            _instance._qpaths.Add(new QueuePath("uat_qin2", "uat_qout2", "uat_qack2"));
-                            break;
+                        using (SqlConnection cn = new SqlConnection(DbConnStr))
+                        {
+                            using (SqlCommand cmd = new SqlCommand(GET_QPATHS, cn))
+                            {
+                                cn.Open();
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                try
+                                {
+                                    using (XmlReader dr = cmd.ExecuteXmlReader())
+                                    {
+                                        _instance._qpaths = dr.Deserialize<QueuePaths>();
+                                    }
+                                }
+                                catch
+                                {
+                                    throw;
+                                }
+                            }
+                        }
                     }
+                    //switch (Area)
+                    //{
+                    //    case Areas.DMZ:
+                    //        _instance._qpaths.Add(new QueuePath("dmz_qin1", "dmz_qout1", "dmz_qack1"));
+                    //        _instance._qpaths.Add(new QueuePath("dmz_qin2", "dmz_qout2", "dmz_qack2"));
+                    //        break;
+                    //    default:
+                    //        _instance._qpaths.Add(new QueuePath("uat_qin1", "uat_qout1", "uat_qack1"));
+                    //        _instance._qpaths.Add(new QueuePath("uat_qin2", "uat_qout2", "uat_qack2"));
+                    //        break;
+                    //}
                 }
                 return _instance._qpaths;
             }
             set { _instance._qpaths = value; }
+        }
+
+        public static InputLists InputLists
+        {
+            get
+            {
+                if (null == _instance._inputlists)
+                {
+                    using (SqlConnection cn = new SqlConnection(DbConnStr))
+                    {
+                        using (SqlCommand cmd = new SqlCommand(GET_INPUTLISTS, cn))
+                        {
+                            cn.Open();
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            try
+                            {
+                                using (XmlReader dr = cmd.ExecuteXmlReader())
+                                {
+                                    _instance._inputlists = dr.Deserialize<InputLists>();
+                                }
+                            }
+                            catch
+                            {
+                                throw;
+                            }
+                        }
+                    }
+                }
+
+                return _instance._inputlists;
+            }
+            set { _instance._inputlists = value; }
         }
 
         public static string DbConnStr
