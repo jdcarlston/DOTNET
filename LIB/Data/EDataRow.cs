@@ -2,7 +2,7 @@
 using System.Data;
 using System.Xml;
 
-namespace LIB.Extensions
+namespace LIB.Data
 {
     public static class EDataRow
     {

@@ -54,10 +54,10 @@
     <Compile Include="Data\MUserSession.cs" />
     <Compile Include="Data\MUserEvent.cs" />
     <Compile Include="EncodedStringWriter.cs" />
-    <Compile Include="Extensions\EDataRow.cs" />
-    <Compile Include="Extensions\EDataSet.cs" />
+    <Compile Include="Data\EDataRow.cs" />
+    <Compile Include="Data\EDataSet.cs" />
     <Compile Include="Extensions\EDateTime.cs" />
-    <Compile Include="Extensions\EDecimalFormatting.cs" />
+    <Compile Include="Extensions\EDecimalFormat.cs" />
     <Compile Include="Extensions\EHttpRequest.cs" />
     <Compile Include="Extensions\EListInt.cs" />
     <Compile Include="Extensions\EListString.cs" />

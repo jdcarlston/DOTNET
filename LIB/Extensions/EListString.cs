@@ -2,7 +2,7 @@
 
 namespace LIB.Extensions
 {
-    public static class EStringList
+    public static class EListString
     {
         public static string ToQuoteString(this List<string> value)
         {

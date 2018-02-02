@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace LIB.Extensions
+namespace LIB.Data
 {
     public static class EDataSet
     {

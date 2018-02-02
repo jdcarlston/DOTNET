@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace LIB.Extensions
 {
-    public static class EDecimalFormatting
+    public static class EDecimalFormat
     {
         public static string FormatPercentage(this decimal amt)
         {
