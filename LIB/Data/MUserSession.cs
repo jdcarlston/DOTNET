@@ -8,8 +8,8 @@ namespace LIB.Data
 {
     public class MUserSession : Model<UserSession>
     {
-        public const string FIND_USEREVENT_BY_ID = "[dbo].[GetUserSessionById]";
-
+        public const string FIND_USERSESSION_BY_SESSIONID = "[dbo].[GetUserSessionBySessionId]";
+        
         public MUserSession() : base() { }
 
         internal override void LoadLine(DataRow row, UserSession obj)
@@ -20,29 +20,31 @@ namespace LIB.Data
             obj.Browser = row.FieldValue<string>("Browser", obj.Browser);
             obj.SessionId = row.FieldValue<string>("SessionId", obj.SessionId);
 
+            loadUserEvents(obj);
+
             //Cache the newly loaded object
             ModelObjectCache.CacheObject(obj);
         }
 
-        public UserSession FindById(string id)
+        public UserSession FindBySessionId(string sessionid)
         {
             UserSession obj = new UserSession();
 
-            if (id.Length.Equals(0))
+            if (sessionid.Length.Equals(0))
             {
-                throw new HttpException("id.Length.Equals(0) on FindByTest");
+                throw new HttpException("sessionid.Length.Equals(0) on FindBySessionId");
             }
 
             using (SqlConnection cn = GetDefaultSqlConnection())
             {
-                using (SqlCommand cmd = new SqlCommand(FIND_USEREVENT_BY_ID, cn))
+                using (SqlCommand cmd = new SqlCommand(FIND_USERSESSION_BY_SESSIONID, cn))
                 {
                     cn.Open();
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter prm = cmd.Parameters.Add("@id", SqlDbType.VarChar, 9);
+                    SqlParameter prm = cmd.Parameters.Add("@sessionid", SqlDbType.VarChar, 9);
 
-                    prm.Value = id;
+                    prm.Value = sessionid;
                     prm.Direction = ParameterDirection.Input;
 
                     //Execute and get dataset
@@ -60,6 +62,15 @@ namespace LIB.Data
             }
 
             return obj;
+        }
+
+        private void loadUserEvents(UserSession session)
+        {
+            ModelListLoader<UserEvent> loader = new ModelListLoader<UserEvent>();
+            loader.Sql = MUserEvent.FIND_USEREVENTS_BY_SESSIONID;
+            loader.AddLookupParameter("sessionid", SqlDbType.VarChar, 100, session.SessionId);
+            loader.Model = ModelRegistry.Model<UserEvent>();
+            loader.Attach(session.UserEvents);
         }
     }
 }

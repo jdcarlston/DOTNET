@@ -40,6 +40,10 @@ namespace LIB
         {
             Items.Add(obj);
         }
+        public void AddRange(ModelList<T> list)
+        {
+            list.ForEach(x => Items.Add(x));
+        }
 
         public void Remove(T obj)
         {

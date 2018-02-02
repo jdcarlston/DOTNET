@@ -47,7 +47,7 @@ namespace LIB
 
     [Serializable]
     [XmlType(TypeName = "UserEvents")]
-    public class UserEvents : List<UserEvent>
+    public class UserEvents : ModelList<UserEvent>
     {
         public UserEvents() { }
         public UserEvents(UserEvents col)

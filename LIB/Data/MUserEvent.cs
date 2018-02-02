@@ -8,7 +8,7 @@ namespace LIB.Data
 {
     public class MUserEvent : Model<UserEvent>
     {
-        public const string FIND_USEREVENT_BY_ID = "[dbo].[GetUserEventById]";
+        public const string FIND_USEREVENTS_BY_SESSIONID = "[dbo].[GetUserEventsBySessionId]";
 
         public MUserEvent() : base() { }
 
@@ -23,42 +23,22 @@ namespace LIB.Data
             ModelObjectCache.CacheObject(obj);
         }
 
-        public UserEvent FindById(string id)
+        public UserEvents FindBySessionId(UserSession session)
         {
-            UserEvent obj = new UserEvent();
+            UserEvents list = new UserEvents();
 
-            if (id.Length.Equals(0))
+            if (session.SessionId.Length.Equals(0))
             {
-                throw new HttpException("id.Length.Equals(0) on FindByTest");
+                throw new HttpException("sessionid.Length.Equals(0) on FindBySessionId");
             }
 
-            using (SqlConnection cn = GetDefaultSqlConnection())
-            {
-                using (SqlCommand cmd = new SqlCommand(FIND_USEREVENT_BY_ID, cn))
-                {
-                    cn.Open();
-                    cmd.CommandType = CommandType.StoredProcedure;
+            ModelListLoader<UserEvent> loader = new ModelListLoader<UserEvent>();
+            loader.Sql = MUserEvent.FIND_USEREVENTS_BY_SESSIONID;
+            loader.AddLookupParameter("sessionid", SqlDbType.VarChar, 50, session.SessionId);
+            loader.Model = ModelRegistry.Model<UserEvent>();
+            loader.Attach(session.UserEvents);
 
-                    SqlParameter prm = cmd.Parameters.Add("@id", SqlDbType.VarChar, 9);
-
-                    prm.Value = id;
-                    prm.Direction = ParameterDirection.Input;
-
-                    //Execute and get dataset
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = cmd;
-
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-
-                    if (ds.IsTableFilled())
-                    {
-                        DoLoadLine(ds.Tables["Table"].Rows[0], obj);
-                    }
-                }
-            }
-
-            return obj;
+            return list;
         }
     }
 }
