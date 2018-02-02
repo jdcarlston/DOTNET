@@ -83,7 +83,6 @@
     <Compile Include="Models\Test.cs" />
     <Compile Include="Q\IO.cs" />
     <Compile Include="Q\Monitor\MonitoredQueues.cs" />
-    <Compile Include="Q\Monitor\QMonitorService.cs" />
     <Compile Include="Q\Monitor\QMonitorServiceBase.cs" />
     <Compile Include="Q\Monitor\QRequestCall.cs" />
     <Compile Include="Q\QueueHandler.cs" />

@@ -2,7 +2,7 @@
 
 namespace LIB.Q.Monitor
 {
-    static class QMonitorProgram
+    static class QMonitorServiceBase
     {
         /// <summary>
         /// The main entry point for the application.
@@ -12,7 +12,7 @@ namespace LIB.Q.Monitor
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new QMonitorService()
+                //new QMonitorService()
             };
             ServiceBase.Run(ServicesToRun);
         }
