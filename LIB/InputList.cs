@@ -37,8 +37,8 @@ namespace LIB
         [XmlAttribute]
         public string Name
         {
-            get { return _name == null ? String.Empty : _name.Trim(); }
-            set { _name = value; }
+            get { return _name == null ? String.Empty : _name; }
+            set { _name = value.Trim(); }
         }
     }
 
@@ -67,8 +67,8 @@ namespace LIB
         [XmlAttribute]
         public string Name
         {
-            get { return _name == null ? String.Empty : _name.Trim(); }
-            set { _name = value; }
+            get { return _name == null ? String.Empty : _name; }
+            set { _name = value.Trim(); }
         }
         [XmlAttribute]
         public int Order
@@ -80,8 +80,8 @@ namespace LIB
         [XmlText]
         public string Text
         {
-            get { return _text == null ? String.Empty : _text.Trim(); }
-            set { _text = value; }
+            get { return _text == null ? String.Empty : _text; }
+            set { _text = value.Trim(); }
         }
     }
 }
