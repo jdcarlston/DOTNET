@@ -8,7 +8,7 @@ namespace LIB
 {
     public static class Age
     {
-        public static int AgeYears(DateTime date)
+        public static int InYears(DateTime date)
         {
             int age = DateTime.Now.Year - date.Year;
             if (DateTime.Now < date.AddYears(age))
