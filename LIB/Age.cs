@@ -18,17 +18,17 @@ namespace LIB
 
         public static bool Is16Years(DateTime date)
         {
-            return AgeYears(date) >= 16 ? true : false;
+            return InYears(date) >= 16 ? true : false;
         }
 
         public static bool Is18Years(DateTime date)
         {
-            return AgeYears(date) >= 18 ? true : false;
+            return InYears(date) >= 18 ? true : false;
         }
 
         public static bool Is21Years(DateTime date)
         {
-            return AgeYears(date) >= 21 ? true : false;
+            return InYears(date) >= 21 ? true : false;
         }
     }
 }
